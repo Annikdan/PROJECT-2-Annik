@@ -1,13 +1,10 @@
 
-/* basic responsive image css */
+/* ------------------------------------------------------------------
+   BASIC RESPONSIVE IMAGES
+------------------------------------------------------------------ */
 img, video{
   max-width: 100%;
   height: auto;
-}
-.landmark-grid{
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 figure{ margin:0;}
 
@@ -28,24 +25,105 @@ RESPONSIVE VIDEO EMBED
 
 /* 4:3 aspect ratio wrapper */
 .videoWrapper.ratio-4-3{
-    padding-bottom: 75%; /* 3 ÷ 4 = .75 which is 75% */
+    padding-bottom: 75%;
 }
-
-/*this is different than the others because it is taller than it is wide.
-So we instead of basing the size on the width of the container, we base it on the height of the viewport
-We also subtract a little (100px) to account for possible fixed header or footer.
-You can change the 100px as needed, just change it in both padding-bottom and width */
 .videoWrapper.ratio-9-16 {
-    padding-bottom: calc(100vh - 100px); /* Full height minus 100px (to account for possible fixed header or footer */
-    width: calc((100vh - 100px) * (9 / 16)); /* Calculate width based on 9:16 aspect ratio */
-    margin-inline: auto; /* center horizontally */
-    /* 9:16 */
+    padding-bottom: calc(100vh - 100px);
+    width: calc((100vh - 100px) * (9 / 16));
+    margin-inline: auto;
 }
-
 .videoWrapper iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: var(--space-4);
+  gap: var(--space-4);
+}
+
+
+/* ----------------------------------------------------------------------------------PAGE STYLES/* ----------------------------------------------------------------------------------      */
+.featured {
+  background-color: var(--alternate-background);
+  color: var(--alternate-text);
+  padding: var(--space-4);
+  border-radius: 15px;
+  margin-bottom: var(--space-6);
+}
+body {
+  font-family:var(--base-family), "Source Sans 3", sans-serif;
+  font-size: var(--text-size-md);
+  color: var(--primary-text);
+  line-height: var(--line-height-base);
+  background-color: var(--primary-background);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--headings-family);
+  color: var(--primary-text);
+  margin: 0 0 var(--space-4) 0;
+}
+.landmarks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  border-radius: 15px;
+}
+
+/*landmark cards */
+.landmark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background-color: var(--highlight-color);
+  border: 1px solid var(--alternate-background);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 0;
+}
+.landmark figure {
+  position: relative;
+  margin: 0;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.landmark figcaption {
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: var(--space-2);
+  right: var(--space-2);
+  max-width: calc(100% - var(--space-4));
+  display: inline-block;
+  color: var(--primary-text);
+  background: var(--primary-background);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-size: var(--text-size-xs);
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 1;
+}
+.landmark h3{
+  text-align: center;
+  padding: var(--space-1) var(--space-1);
+  color: var(--primary-text);
+}
+/* ------------------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------------ */
+@media (max-width: 639px) {
+  .landmarks-grid {
+    grid-template-columns: 1fr;
+  }
 }
